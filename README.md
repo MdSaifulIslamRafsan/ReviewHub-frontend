@@ -6,12 +6,11 @@ Welcome to the **ReviewHub** repository! This is the frontend application of the
 Check out the live version of the site:
 [Product Review Portal](https://reviewhub-eight.vercel.app/)
 
-
-### Admin Credentials for Testing
+## Admin Credentials for Testing
 - **Email**: admin@example.com
 - **Password**: admin123
 
----
+
 
 ## Features
 ### User Features
