@@ -6,6 +6,13 @@ Welcome to the **ReviewHub** repository! This is the frontend application of the
 Check out the live version of the site:
 [Product Review Portal](https://reviewhub-eight.vercel.app/)
 
+
+### Admin Credentials for Testing
+- **Email**: admin@example.com
+- **Password**: admin123
+
+---
+
 ## Features
 ### User Features
 - **Authentication**: Register and log in using email and password, with secure session management via JWT.
@@ -99,9 +106,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-### Admin Credentials for Testing
-- **Email**: admin@example.com
-- **Password**: admin123
-
----
 
