@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -10,27 +10,27 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { MoreHorizontal } from 'lucide-react';
-import { Review } from '@/types/reviewTypes';
-import { useUser } from '@/context/UserContext';
-import { getSingleUserReviews, deleteReview } from '@/services/review';
-import { DeleteConfirmationModal } from '@/components/dashboard/DeleteConfirmationModal';
-import { toast } from 'react-toastify';
+} from "@/components/ui/dropdown-menu";
+import { MoreHorizontal } from "lucide-react";
+import { Review } from "@/types/reviewTypes";
+import { useUser } from "@/context/UserContext";
+import { getSingleUserReviews, deleteReview } from "@/services/review";
+import { DeleteConfirmationModal } from "@/components/dashboard/DeleteConfirmationModal";
+import { toast } from "react-toastify";
 
 const statusVariantMap = {
-  DRAFT: 'secondary',
-  PENDING: 'warning',
-  PUBLISHED: 'success',
-  UNPUBLISHED: 'destructive',
+  DRAFT: "secondary",
+  PENDING: "warning",
+  PUBLISHED: "success",
+  UNPUBLISHED: "destructive",
 } as const;
 
 const ReviewsTable = () => {
@@ -40,12 +40,12 @@ const ReviewsTable = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
   const { user } = useUser();
- 
+
   useEffect(() => {
     const fetchUserReviews = async () => {
       if (!user?.userId) return;
       const data = await getSingleUserReviews(user.userId);
-      console.log(data)
+      console.log(data);
       setReviews(data?.data || []);
     };
     fetchUserReviews();
@@ -64,12 +64,12 @@ const ReviewsTable = () => {
       const result = await deleteReview(reviewToDelete);
       if (result.success) {
         setReviews(reviews.filter((review) => review.id !== reviewToDelete));
-        toast.success(result?.message)
+        toast.success(result?.message);
       } else {
         toast.error(result.message);
       }
     } catch (error) {
-      console.error('Failed to delete review:', error);
+      console.error("Failed to delete review:", error);
     } finally {
       setIsDeleting(false);
       setIsDeleteModalOpen(false);
@@ -79,7 +79,7 @@ const ReviewsTable = () => {
 
   return (
     <section className="p-4 md:p-6 pointer-events-auto">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+      <h2 className="text-lg md:text-2xl 2xl:text-3xl font-bold mb-4 md:mb-6">
         My Reviews
       </h2>
 
@@ -128,8 +128,8 @@ const ReviewsTable = () => {
                         key={i}
                         className={`h-4 w-4 ${
                           i < review.rating
-                            ? 'text-yellow-500 fill-yellow-500'
-                            : 'text-gray-300 fill-gray-300'
+                            ? "text-yellow-500 fill-yellow-500"
+                            : "text-gray-300 fill-gray-300"
                         }`}
                       >
                         ★
@@ -161,8 +161,8 @@ const ReviewsTable = () => {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      {review.status === 'DRAFT' ||
-                      review.status === 'PENDING' ? (
+                      {review.status === "DRAFT" ||
+                      review.status === "PENDING" ? (
                         <>
                           <DropdownMenuItem
                             onClick={() =>
@@ -205,13 +205,13 @@ const ReviewsTable = () => {
             {/* Status indicator bar */}
             <div
               className={`absolute top-0 left-0 h-1 w-full rounded-t-xl ${
-                review.status === 'DRAFT'
-                  ? 'bg-gray-400'
-                  : review.status === 'PENDING'
-                  ? 'bg-yellow-500'
-                  : review.status === 'PUBLISHED'
-                  ? 'bg-green-500'
-                  : 'bg-red-500'
+                review.status === "DRAFT"
+                  ? "bg-gray-400"
+                  : review.status === "PENDING"
+                    ? "bg-yellow-500"
+                    : review.status === "PUBLISHED"
+                      ? "bg-green-500"
+                      : "bg-red-500"
               }`}
             />
 
@@ -239,8 +239,8 @@ const ReviewsTable = () => {
                         key={i}
                         className={` ${
                           i < review.rating
-                            ? 'text-yellow-500 fill-yellow-500'
-                            : 'text-gray-300 fill-gray-300 dark:text-gray-600 dark:fill-gray-600'
+                            ? "text-yellow-500 fill-yellow-500"
+                            : "text-gray-300 fill-gray-300 dark:text-gray-600 dark:fill-gray-600"
                         }`}
                       >
                         ★
@@ -257,7 +257,7 @@ const ReviewsTable = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  {review.status === 'DRAFT' || review.status === 'PENDING' ? (
+                  {review.status === "DRAFT" || review.status === "PENDING" ? (
                     <>
                       <DropdownMenuItem
                         onClick={() =>
@@ -296,10 +296,10 @@ const ReviewsTable = () => {
                 )}
 
                 <div className="text-sm text-muted-foreground">
-                  {new Date(review.createdAt).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
+                  {new Date(review.createdAt).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
                   })}
                 </div>
               </div>

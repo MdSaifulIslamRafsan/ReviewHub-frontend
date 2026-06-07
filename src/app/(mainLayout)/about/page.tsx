@@ -1,11 +1,11 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from "@/components/ui/accordion";
 import {
   Users,
   Shield,
@@ -16,11 +16,11 @@ import {
   CheckCircle,
   Clock,
   Target,
-} from 'lucide-react';
+} from "lucide-react";
 
-import { TeamMemberCard } from '@/components/TeamMemberCard';
-import { ValueCard } from '@/components/ValueCard';
-import CTA from '@/components/HomePage/CTA';
+import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { ValueCard } from "@/components/ValueCard";
+import CTA from "@/components/HomePage/CTA";
 
 export default function AboutPage() {
   return (
@@ -28,13 +28,8 @@ export default function AboutPage() {
       {/* Mission Section */}
       <section className="pb-20 pt-10">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-primary/10 text-primary dark:bg-primary/20 dark:text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
-              About Us
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 dark:text-white">
-              {`We're`} building the most trusted product review platform
-            </h1>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4">About Us</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
               ReviewHub connects consumers with authentic product experiences,
               helping everyone make better purchasing decisions through
@@ -48,7 +43,9 @@ export default function AboutPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-5">
                   <Target className="h-6 w-6 text-primary dark:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 dark:text-white">Our Vision</h3>
+                <h3 className="text-xl font-bold mb-3 dark:text-white">
+                  Our Vision
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   To create a world where every consumer has access to
                   trustworthy information before making a purchase.
@@ -61,7 +58,9 @@ export default function AboutPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-5">
                   <Clock className="h-6 w-6 text-primary dark:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 dark:text-white">Our Story</h3>
+                <h3 className="text-xl font-bold mb-3 dark:text-white">
+                  Our Story
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Founded in 2018 by Sarah Johnson, ReviewHub grew from a small
                   project to a thriving community of over 250,000 users.
@@ -74,7 +73,9 @@ export default function AboutPage() {
                 <div className="h-12 w-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-5">
                   <CheckCircle className="h-6 w-6 text-primary dark:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 dark:text-white">Our Approach</h3>
+                <h3 className="text-xl font-bold mb-3 dark:text-white">
+                  Our Approach
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   We combine rigorous moderation, verification systems, and
                   community engagement to ensure review quality.
@@ -88,13 +89,8 @@ export default function AboutPage() {
       {/* Values Section */}
       <section className="py-20 bg-primary/5 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-primary/10 text-primary dark:bg-primary/20 dark:text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
-              Our Values
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
-              The principles that guide us
-            </h2>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4"> Our Values</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               These core values shape everything we do at ReviewHub, from how we
               build our platform to how we interact with our community.
@@ -121,13 +117,17 @@ export default function AboutPage() {
             />
 
             <ValueCard
-              icon={<TrendingUp className="h-6 w-6 text-primary dark:text-white" />}
+              icon={
+                <TrendingUp className="h-6 w-6 text-primary dark:text-white" />
+              }
               title="Innovation"
               description="We continuously improve our platform based on user feedback and emerging technologies to provide the best experience."
             />
 
             <ValueCard
-              icon={<MessageSquare className="h-6 w-6 text-primary dark:text-white" />}
+              icon={
+                <MessageSquare className="h-6 w-6 text-primary dark:text-white" />
+              }
               title="Transparency"
               description="We're open about how our platform works, how reviews are moderated, and how we sustain our business."
             />
@@ -144,13 +144,8 @@ export default function AboutPage() {
       {/* Stats Section */}
       <section className="py-20 bg-primary text-white dark:bg-primary/90">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-white/20 text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
-              Our Impact
-            </div>
-            <h2 className="text-3xl text-white md:text-4xl font-bold mb-6">
-              Growing together
-            </h2>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4"> Our Impact</h2>
             <p className="text-xl text-white/90">
               The numbers that showcase our {`community's`} collective impact
             </p>
@@ -187,13 +182,8 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-20 dark:bg-gray-900">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-primary/10 text-primary dark:bg-primary/20 dark:text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
-              Our Team
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
-              Meet the people behind ReviewHub
-            </h2>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4"> Our Team</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               A passionate team dedicated to building the most trusted review
               platform
@@ -323,15 +313,14 @@ export default function AboutPage() {
       {/* Journey Section */}
       <section className="py-20 bg-primary/5 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-primary/10 text-primary dark:bg-primary/20 dark:text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4">
+              {" "}
               Our Journey
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
-              From idea to community
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              The key milestones in {`ReviewHub's`} evolution
+              From idea to community The key milestones in {`ReviewHub's`}{" "}
+              evolution
             </p>
           </div>
 
@@ -344,7 +333,9 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="md:w-2/3">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">The Beginning</h3>
+                  <h3 className="text-xl font-bold mb-2 dark:text-white">
+                    The Beginning
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     ReviewHub started as a small project by our founder Sarah
                     Johnson, who was frustrated by the lack of honest product
@@ -380,7 +371,9 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="md:w-2/3">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">Mobile App Launch</h3>
+                  <h3 className="text-xl font-bold mb-2 dark:text-white">
+                    Mobile App Launch
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     Launched our mobile app, allowing users to read and write
                     reviews on the go, and reached our first 100,000 registered
@@ -397,7 +390,9 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="md:w-2/3">
-                  <h3 className="text-xl font-bold mb-2 dark:text-white">Today & Beyond</h3>
+                  <h3 className="text-xl font-bold mb-2 dark:text-white">
+                    Today & Beyond
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-300">
                     Now with over 250,000 active users and millions of reviews,
                     we continue to innovate and improve the platform based on
@@ -414,13 +409,8 @@ export default function AboutPage() {
       {/* FAQ Section */}
       <section className="pt-20 dark:bg-gray-900">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <div className="inline-block bg-primary/10 text-primary dark:bg-primary/20 dark:text-white text-sm font-medium px-3 py-1 rounded-full mb-4">
-              FAQ
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
-              Frequently asked questions
-            </h2>
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-3xl font-bold text-center mb-4">FAQ</h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Find answers to common questions about ReviewHub
             </p>
@@ -458,7 +448,7 @@ export default function AboutPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300">
                   We use a combination of automated systems and human moderation
-                  to verify reviews. Users can upload purchase receipts to get a{' '}
+                  to verify reviews. Users can upload purchase receipts to get a{" "}
                   {`"Verified Purchase"`} badge. We also use pattern recognition
                   to identify suspicious review activity.
                 </AccordionContent>
@@ -470,8 +460,9 @@ export default function AboutPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 dark:text-gray-300">
                   Yes, you can edit your review while {`it's`} in the pending
-                  state. Once a review has been approved, {`you'll`} need to contact
-                  our support team if you need to make significant changes.
+                  state. Once a review has been approved, {`you'll`} need to
+                  contact our support team if you need to make significant
+                  changes.
                 </AccordionContent>
               </AccordionItem>
 

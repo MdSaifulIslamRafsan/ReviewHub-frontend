@@ -1,33 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   FieldError,
   FieldValues,
   SubmitHandler,
   useForm,
-} from 'react-hook-form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+} from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
-import { Star, X } from 'lucide-react';
-import Image from 'next/image';
-import { updateReview } from '@/services/review';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Category } from '@/types/cetegories';
-import { Review } from '@/types/reviewTypes';
+} from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
+import { Star, X } from "lucide-react";
+import Image from "next/image";
+import { updateReview } from "@/services/review";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Category } from "@/types/cetegories";
+import { Review } from "@/types/reviewTypes";
 
 interface EditReviewFormProps {
   review: Review;
@@ -41,7 +41,9 @@ export default function EditReviewForm({
   id,
 }: EditReviewFormProps) {
   const router = useRouter();
-  const [selectedImages, setSelectedImages] = useState<(File & { preview: string })[]>([]);
+  const [selectedImages, setSelectedImages] = useState<
+    (File & { preview: string })[]
+  >([]);
   const [rating, setRating] = useState(review.rating || 0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -62,15 +64,15 @@ export default function EditReviewForm({
 
   useEffect(() => {
     // Initialize form with review data
-    setValue('title', review.title);
-    setValue('description', review.description);
-    setValue('purchaseSource', review.purchaseSource);
-    setValue('category', review.categoryId);
-    setValue('rating', review.rating);
+    setValue("title", review.title);
+    setValue("description", review.description);
+    setValue("purchaseSource", review.purchaseSource);
+    setValue("category", review.categoryId);
+    setValue("rating", review.rating);
 
     const initialImages = review.imageUrls?.map((url) => ({
-      preview: url || '', 
-      name: url.split('/').pop() || 'image',
+      preview: url || "",
+      name: url.split("/").pop() || "image",
     })) as (File & { preview: string })[];
     setSelectedImages(initialImages);
   }, [review, setValue]);
@@ -92,7 +94,7 @@ export default function EditReviewForm({
 
   const handleRatingChange = (value: number) => {
     setRating(value);
-    setValue('rating', value);
+    setValue("rating", value);
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -101,38 +103,35 @@ export default function EditReviewForm({
       const formData = new FormData();
 
       // Add all form data
-      formData.append('title', data.title);
-      formData.append('description', data.description);
-      formData.append('rating', rating.toString());
-      formData.append('categoryId', data.category);
-      formData.append('status', review.status || 'PENDING');
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("rating", rating.toString());
+      formData.append("categoryId", data.category);
+      formData.append("status", review.status || "PENDING");
       if (data.purchaseSource) {
-        formData.append('purchaseSource', data.purchaseSource);
+        formData.append("purchaseSource", data.purchaseSource);
       }
 
-    
       selectedImages.forEach((file) => {
         if (file instanceof File) {
-          formData.append('imageUrls', file);
+          formData.append("imageUrls", file);
         } else if (file) {
-         
-          formData.append('existingImageUrls', file);
+          formData.append("existingImageUrls", file);
         }
       });
-      
 
       const response = await updateReview(id, formData);
-      console.log(response)
+      console.log(response);
 
       if (response.success) {
-        toast.success(response?.data?.message || 'Review updated successfully');
-        router.push('/user/reviews');
+        toast.success(response?.data?.message || "Review updated successfully");
+        router.push("/user/reviews");
       } else {
-        toast.error(response?.data?.message  || 'Failed to update review');
+        toast.error(response?.data?.message || "Failed to update review");
       }
     } catch (error: any) {
-      console.error('Review update failed:', error);
-      toast.error(error.message || 'Failed to update review');
+      console.error("Review update failed:", error);
+      toast.error(error.message || "Failed to update review");
     } finally {
       setIsSubmitting(false);
     }
@@ -140,7 +139,7 @@ export default function EditReviewForm({
 
   return (
     <section className="p-4 md:p-6">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+      <h2 className="text-lg md:text-2xl 2xl:text-3xl font-bold mb-4 md:mb-6">
         Edit Product Review
       </h2>
       <Card className="max-w-2xl w-full">
@@ -152,9 +151,9 @@ export default function EditReviewForm({
               <Input
                 id="title"
                 type="text"
-                {...register('title', { required: 'Title is required' })}
+                {...register("title", { required: "Title is required" })}
                 placeholder="e.g., Amazing Bluetooth Headphones"
-                className={errors.title ? 'border-red-500' : ''}
+                className={errors.title ? "border-red-500" : ""}
               />
               {errors.title && (
                 <p className="text-sm text-red-500">
@@ -169,11 +168,11 @@ export default function EditReviewForm({
               <Textarea
                 id="description"
                 rows={6}
-                {...register('description', {
-                  required: 'Description is required',
+                {...register("description", {
+                  required: "Description is required",
                 })}
                 placeholder="Share your experience with this product..."
-                className={errors.description ? 'border-red-500' : ''}
+                className={errors.description ? "border-red-500" : ""}
               />
               {errors.description && (
                 <p className="text-sm text-red-500">
@@ -196,8 +195,8 @@ export default function EditReviewForm({
                     <Star
                       className={`h-5 w-5 md:h-6 md:w-6 ${
                         rating >= star
-                          ? 'fill-current text-yellow-500'
-                          : 'stroke-current text-gray-400'
+                          ? "fill-current text-yellow-500"
+                          : "stroke-current text-gray-400"
                       }`}
                     />
                   </button>
@@ -208,7 +207,7 @@ export default function EditReviewForm({
               </div>
               <input
                 type="hidden"
-                {...register('rating', { required: 'Rating is required' })}
+                {...register("rating", { required: "Rating is required" })}
               />
               {errors.rating && (
                 <p className="text-sm text-red-500">
@@ -221,13 +220,15 @@ export default function EditReviewForm({
             <div className="space-y-2">
               <Label htmlFor="category">Category*</Label>
               <Select
-                onValueChange={(value) => setValue('category', value)}
-                defaultValue={review.categoryId || ''}
+                onValueChange={(value) => setValue("category", value)}
+                defaultValue={review.categoryId || ""}
               >
                 <SelectTrigger
-                  className={errors.category ? 'border-red-500' : ''}
+                  className={errors.category ? "border-red-500" : ""}
                   id="category"
-                  {...register('category', { required: 'Category is required' })}
+                  {...register("category", {
+                    required: "Category is required",
+                  })}
                 >
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
@@ -254,7 +255,7 @@ export default function EditReviewForm({
               <Input
                 id="purchaseSource"
                 type="url"
-                {...register('purchaseSource')}
+                {...register("purchaseSource")}
                 placeholder="https://www.amazon.com/product-link"
               />
             </div>
@@ -278,7 +279,7 @@ export default function EditReviewForm({
                       className="relative h-16 w-16 md:h-20 md:w-20 rounded-md overflow-hidden border group"
                     >
                       <Image
-                        src={file.preview || '/placeholder-image.jpg'}
+                        src={file.preview || "/placeholder-image.jpg"}
                         alt={`Preview ${index + 1}`}
                         width={80}
                         height={80}
@@ -302,7 +303,7 @@ export default function EditReviewForm({
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => router.push('/user/reviews')}
+                onClick={() => router.push("/user/reviews")}
               >
                 Cancel
               </Button>
@@ -332,7 +333,7 @@ export default function EditReviewForm({
                     Updating...
                   </>
                 ) : (
-                  'Update Review'
+                  "Update Review"
                 )}
               </Button>
             </div>
