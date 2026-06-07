@@ -25,6 +25,7 @@ import { useUser } from "@/context/UserContext";
 import { getSingleUserReviews, deleteReview } from "@/services/review";
 import { DeleteConfirmationModal } from "@/components/dashboard/DeleteConfirmationModal";
 import { toast } from "react-toastify";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const statusVariantMap = {
   DRAFT: "secondary",
@@ -45,7 +46,7 @@ const ReviewsTable = () => {
     const fetchUserReviews = async () => {
       if (!user?.userId) return;
       const data = await getSingleUserReviews(user.userId);
-      console.log(data);
+      // console.log(data);
       setReviews(data?.data || []);
     };
     fetchUserReviews();
@@ -78,10 +79,12 @@ const ReviewsTable = () => {
   };
 
   return (
-    <section className="p-4 md:p-6 pointer-events-auto">
-      <h2 className="text-lg md:text-2xl 2xl:text-3xl font-bold mb-4 md:mb-6">
-        My Reviews
-      </h2>
+    <Card className="w-full">
+      <CardHeader>
+        <h2 className="text-lg md:text-2xl 2xl:text-3xl font-bold">
+          My Reviews
+        </h2>
+      </CardHeader>
 
       <DeleteConfirmationModal
         open={isDeleteModalOpen}
@@ -91,109 +94,111 @@ const ReviewsTable = () => {
       />
 
       {/* Desktop Table */}
-      <div className="hidden md:block rounded-md border overflow-x-auto">
-        <Table className="min-w-full">
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Rating</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Premium</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {reviews.map((review) => (
-              <TableRow key={review.id}>
-                <TableCell className="font-medium">
-                  <Link
-                    href={`/reviews/${review.id}`}
-                    className="hover:underline"
-                  >
-                    {review.title}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <Badge variant={statusVariantMap[review.status]}>
-                    {review.status.charAt(0).toUpperCase() +
-                      review.status.slice(1)}
-                  </Badge>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <span
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < review.rating
-                            ? "text-yellow-500 fill-yellow-500"
-                            : "text-gray-300 fill-gray-300"
-                        }`}
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                </TableCell>
-                <TableCell>{review.category?.name}</TableCell>
-                <TableCell>
-                  {new Date(review.createdAt).toLocaleDateString()}
-                </TableCell>
-                <TableCell>
-                  {review.isPremium ? (
-                    <Badge
-                      variant="outline"
-                      className="border-purple-500 text-purple-500"
-                    >
-                      ${review.premiumPrice}
-                    </Badge>
-                  ) : (
-                    <Badge variant="outline">Free</Badge>
-                  )}
-                </TableCell>
-                <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      {review.status === "DRAFT" ||
-                      review.status === "PENDING" ? (
-                        <>
-                          <DropdownMenuItem
-                            onClick={() =>
-                              router.push(`/user/reviews/${review.id}`)
-                            }
-                          >
-                            Edit
-                          </DropdownMenuItem>
-                          <DropdownMenuItem
-                            className="text-destructive"
-                            onClick={() => handleDeleteClick(review.id)}
-                          >
-                            Delete
-                          </DropdownMenuItem>
-                        </>
-                      ) : (
-                        <DropdownMenuItem
-                          disabled
-                          className="text-muted-foreground"
-                        >
-                          Moderated
-                        </DropdownMenuItem>
-                      )}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TableCell>
+      <CardContent>
+        <div className="hidden md:block rounded-md border overflow-x-auto min-h-[calc(100vh-150px)]">
+          <Table className="">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Title</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Rating</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Premium</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+            </TableHeader>
+            <TableBody>
+              {reviews.map((review) => (
+                <TableRow key={review.id}>
+                  <TableCell className="font-medium">
+                    <Link
+                      href={`/reviews/${review.id}`}
+                      className="hover:underline"
+                    >
+                      {review.title}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={statusVariantMap[review.status]}>
+                      {review.status.charAt(0).toUpperCase() +
+                        review.status.slice(1)}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <span
+                          key={i}
+                          className={`h-4 w-4 ${
+                            i < review.rating
+                              ? "text-yellow-500 fill-yellow-500"
+                              : "text-gray-300 fill-gray-300"
+                          }`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                  </TableCell>
+                  <TableCell>{review.category?.name}</TableCell>
+                  <TableCell>
+                    {new Date(review.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell>
+                    {review.isPremium ? (
+                      <Badge
+                        variant="outline"
+                        className="border-purple-500 text-purple-500"
+                      >
+                        ${review.premiumPrice}
+                      </Badge>
+                    ) : (
+                      <Badge variant="outline">Free</Badge>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        {review.status === "DRAFT" ||
+                        review.status === "PENDING" ? (
+                          <>
+                            <DropdownMenuItem
+                              onClick={() =>
+                                router.push(`/user/reviews/${review.id}`)
+                              }
+                            >
+                              Edit
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              className="text-destructive"
+                              onClick={() => handleDeleteClick(review.id)}
+                            >
+                              Delete
+                            </DropdownMenuItem>
+                          </>
+                        ) : (
+                          <DropdownMenuItem
+                            disabled
+                            className="text-muted-foreground"
+                          >
+                            Moderated
+                          </DropdownMenuItem>
+                        )}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
 
       {/* Enhanced Mobile Cards */}
       <div className="md:hidden space-y-4">
@@ -328,7 +333,7 @@ const ReviewsTable = () => {
           </div>
         ))}
       </div>
-    </section>
+    </Card>
   );
 };
 

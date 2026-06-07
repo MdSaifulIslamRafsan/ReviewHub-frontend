@@ -40,20 +40,20 @@ const Register = () => {
     try {
       // TODO: Replace with your API logic
       const res = await registerUser(data);
-      console.log(data);
+      // console.log(data);
       setIsLoading(true);
       if (res.success) {
         toast.success(res.message);
         router.push("/auth/login");
       }
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
       toast.error(
         "There was a problem creating your account. Please try again.",
         {
           position: "top-center",
           autoClose: 3000,
-        }
+        },
       );
     }
   };

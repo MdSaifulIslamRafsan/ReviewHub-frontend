@@ -27,7 +27,7 @@ export default async function AdminDashboardPage() {
   );
 
   const data = await res.json();
-  console.log(data)
+  // console.log(data)
 
   const cards: TCard[] = [
     {

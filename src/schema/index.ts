@@ -33,8 +33,23 @@ export const reviewFormSchema = z
       message:
         "Premium price is required for premium reviews and must be greater than 0",
       path: ["premiumPrice"], // This targets the error at the premiumPrice field
-    }
+    },
   );
 
 // Type for the form values
 export type ReviewFormValues = z.infer<typeof reviewFormSchema>;
+
+export const reviewSchema = z.object({
+  title: z.string().min(5, "Title must be at least 5 characters"),
+  description: z.string().min(20, "Description must be at least 20 characters"),
+  category: z.string().min(1, "Category is required"),
+  rating: z.number().min(1, "Please select a rating"),
+  purchaseSource: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.startsWith("http"), {
+      message: "Must be a valid URL",
+    }),
+  images: z.array(z.instanceof(File)).optional(),
+  status: z.enum(["PENDING", "DRAFT", "UNPUBLISHED", "PUBLISHED"]).optional(),
+});

@@ -52,7 +52,7 @@ export default function Login() {
         toast.error(res?.message);
       }
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
       toast.error("Invalid email or password", {
         position: "top-center",
         autoClose: 3000,
