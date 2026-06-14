@@ -51,7 +51,7 @@ export const getPaymentByUser = async () => {
     console.log("res", res);
 
     const data = (await res.json()) || [];
-    console.log("✅ Payments :", data);
+    // console.log("✅ Payments :", data);
     return data.data;
   } catch (error: any) {
     console.error("❌ Error fetching payments:", error.message);
@@ -86,7 +86,7 @@ export const getSinglePayment = async (id: string) => {
     }
 
     const data = await res.json();
-    console.log("✅ Payments fetched:", data);
+    // console.log("✅ Payments fetched:", data);
     return data;
   } catch (error: any) {
     console.error("❌ Error fetching payments:", error.message);

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -51,15 +45,14 @@ const UserPaymentHistory = ({ payments }: UserPaymentHistoryProps) => {
   };
 
   return (
-    <Card className="w-full my-10">
+    <Card className="w-full ">
       <CardHeader>
-        <CardTitle>Payment History</CardTitle>
-        <CardDescription>
-          View all your premium review purchases
-        </CardDescription>
+        <h2 className="text-lg md:text-2xl 2xl:text-3xl font-bold">
+          Payment History
+        </h2>
       </CardHeader>
       <CardContent>
-        <div className="rounded-md border overflow-x-auto">
+        <div className="rounded-md border overflow-x-auto min-h-[calc(100vh-150px)]">
           <Table>
             <TableHeader>
               <TableRow>

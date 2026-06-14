@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CheckoutPage = ({ review }: { review: any }) => {
-  console.log(review.data);
+  // console.log(review.data);
   const { user } = useUser();
 
   const router = useRouter();
